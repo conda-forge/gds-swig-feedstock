@@ -3,7 +3,8 @@
 
 # dependencies
 {% set gds_base_version = "2.19.5" %}
-{% set gds_frameio_version = "2.19.5" %}
+{% set gds_frameio_version = "2.19.6" %}
+{% set gds_lsmp_version = "2.19.9" %}
 
 package:
   name: {{ name|lower }}
@@ -29,11 +30,13 @@ outputs:
       host:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
+        - gds-lsmp-base >={{ gds_frameio_version }}
         - numpy
         - python
       run:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
+        - gds-lsmp-base >={{ gds_frameio_version }}
         - {{ pin_compatible('numpy') }}
         - python
     test:
