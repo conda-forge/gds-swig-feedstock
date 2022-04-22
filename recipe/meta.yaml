@@ -30,13 +30,13 @@ outputs:
       host:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - gds-lsmp-base >={{ gds_frameio_version }}
+        - gds-lsmp >={{ gds_lsmp_version }}
         - numpy
         - python
       run:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - gds-lsmp-base >={{ gds_frameio_version }}
+        - gds-lsmp >={{ gds_lsmp_version }}
         - {{ pin_compatible('numpy') }}
         - python
     test:
