@@ -1,5 +1,5 @@
 {% set name = "gds-swig" %}
-{% set version = "2.19.6" %}
+{% set version = "3.0.0" %}
 
 # dependencies
 {% set gds_base_version = "2.19.10" %}
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 0cab7dc04d8884d85f9900a51ff6abafe26071a7c0bd80950d5941004f1c3623
+  sha256: 649cbbd4320ac58d8ccba903b8ff01f7ed5b01cf075d9acabc4ab27528ba2473
 
 build:
   number: 0
