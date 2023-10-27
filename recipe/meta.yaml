@@ -31,6 +31,7 @@ outputs:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
         - gds-lsmp >={{ gds_lsmp_version }}
+        - libboost-headers
         - numpy
         - python
       run:
