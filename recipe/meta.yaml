@@ -23,6 +23,10 @@ build:
 outputs:
   - name: python-gds
     script: build-pygds.sh
+    build:
+      ignore_run_exports:
+        # imported, but not linked
+        - numpy
     requirements:
       build:
         - {{ compiler('cxx') }}
