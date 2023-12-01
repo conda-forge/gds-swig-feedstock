@@ -17,7 +17,7 @@ source:
     - 0001-Replaced-AC_PYTHON_DEVEL-with-AX_PYTHON_DEVEL-to-avo.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 outputs:
