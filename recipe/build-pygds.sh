@@ -2,13 +2,15 @@
 
 set -e
 
+# update py-compile
+cp ${BUILD_PREFIX}/share/automake-*/py-compile config/
+# rebuild configure
+autoreconf
+
 mkdir -p _build_py${PY_VER}
 cd _build_py${PY_VER}
 
 export GDSIO_LIBS="-L${PREFIX}/lib -lframeio"
-
-# ignore deprecation warning from distutils, it breaks ac_python_devel.m4
-export PYTHONWARNINGS="${PYTHONWARNINGS},ignore:The distutils package:DeprecationWarning"
 
 # configure
 ${SRC_DIR}/configure \

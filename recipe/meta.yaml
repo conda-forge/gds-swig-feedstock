@@ -4,7 +4,6 @@
 # dependencies
 {% set gds_base_version = "3.0.0" %}
 {% set gds_frameio_version = "3.0.0" %}
-{% set gds_lsmp_version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -13,30 +12,39 @@ package:
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 649cbbd4320ac58d8ccba903b8ff01f7ed5b01cf075d9acabc4ab27528ba2473
+  patches:
+    # backport 96c2a6050f1eec31b6d4c7cb55c4d717abc22c9b
+    - 0001-Replaced-AC_PYTHON_DEVEL-with-AX_PYTHON_DEVEL-to-avo.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 outputs:
   - name: python-gds
     script: build-pygds.sh
+    build:
+      ignore_run_exports:
+        # imported, but not linked
+        - numpy
     requirements:
       build:
         - {{ compiler('cxx') }}
         - make
         - pkg-config
         - swig >=2.0.11
+        # to support autoreconf with patches
+        - autoconf
+        - automake
       host:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - gds-lsmp >={{ gds_lsmp_version }}
+        - libboost-headers
         - numpy
         - python
       run:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - gds-lsmp >={{ gds_lsmp_version }}
         - {{ pin_compatible('numpy') }}
         - python
     test:
