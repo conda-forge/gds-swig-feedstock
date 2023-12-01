@@ -4,7 +4,6 @@
 # dependencies
 {% set gds_base_version = "3.0.0" %}
 {% set gds_frameio_version = "3.0.0" %}
-{% set gds_lsmp_version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -36,14 +35,12 @@ outputs:
       host:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - gds-lsmp >={{ gds_lsmp_version }}
         - libboost-headers
         - numpy
         - python
       run:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - gds-lsmp >={{ gds_lsmp_version }}
         - {{ pin_compatible('numpy') }}
         - python
     test:
