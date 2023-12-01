@@ -2,6 +2,8 @@
 
 set -e
 
+# update py-compile
+cp ${BUILD_PREFIX}/share/automake-*/py-compile config/
 # rebuild configure
 autoreconf
 
