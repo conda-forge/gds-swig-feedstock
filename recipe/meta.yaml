@@ -1,5 +1,5 @@
 {% set name = "gds-swig" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 
 # dependencies
 {% set gds_base_version = "3.0.0" %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 649cbbd4320ac58d8ccba903b8ff01f7ed5b01cf075d9acabc4ab27528ba2473
+  sha256: 9a5c3195d0ec94a2d1773723aab54305c26d12e585410d2eefa16d1736cc8098
   patches:
     # to update the patches for a new release:
     #
@@ -40,7 +40,7 @@ source:
     - patches/0003-swig-update-numpy.i.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
 
 outputs:
