@@ -13,23 +13,43 @@ source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
   sha256: 649cbbd4320ac58d8ccba903b8ff01f7ed5b01cf075d9acabc4ab27528ba2473
   patches:
+    # to update the patches for a new release:
+    #
+    #     # -- checkout the new source release tag
+    #     cd /path/to/git/gds
+    #     git fetch
+    #     git checkout <release-tag>
+    #     # -- apply the patches on top of the release tag
+    #     git am --3way /path/to/git/gds-swig-feedstock/recipe/patches/*.patch
+    #     <resolve-any-conflicts>
+    #     # -- render new patch files
+    #     rm -rf swig-patches/*.patch
+    #     git format-patch <release-tag> wrappers/swig/ -o swig-patches
+    #     # -- copy them back to the feedstock
+    #     cd /path/to/git/gds-swig-feedstock
+    #     git rm recipe/patches/*.patch
+    #     cp /path/to/git/gds/swig-patches/*.patch recipe/patches/
+    #     git add recipe/patches/*.patch
+    #     <update-this-file-as-required>
+
     # backport 96c2a6050f1eec31b6d4c7cb55c4d717abc22c9b
-    - 0001-Replaced-AC_PYTHON_DEVEL-with-AX_PYTHON_DEVEL-to-avo.patch
+    - patches/0001-Replaced-AC_PYTHON_DEVEL-with-AX_PYTHON_DEVEL-to-avo.patch
+    # hack fix for https://git.ligo.org/gds/gds/-/issues/185
+    - patches/0002-swig-disable-multi-module-support.patch
+    # backport https://git.ligo.org/gds/gds/-/merge_requests/298
+    - patches/0003-swig-update-numpy.i.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 outputs:
   - name: python-gds
     script: build-pygds.sh
-    build:
-      ignore_run_exports:
-        # imported, but not linked
-        - numpy
     requirements:
       build:
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
         - make
         - pkg-config
         - swig >=2.0.11
@@ -45,10 +65,11 @@ outputs:
       run:
         - gds-base >={{ gds_base_version }}
         - gds-frameio-base >={{ gds_frameio_version }}
-        - {{ pin_compatible('numpy') }}
+        - numpy
         - python
     test:
       imports:
+        - numpy
         - gds.pygdsdata
         - gds.pygdsio
         - gds.pygdssigp
