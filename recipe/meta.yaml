@@ -32,12 +32,10 @@ source:
     #     git add recipe/patches/*.patch
     #     <update-this-file-as-required>
 
-    # backport 96c2a6050f1eec31b6d4c7cb55c4d717abc22c9b
-    - patches/0001-Replaced-AC_PYTHON_DEVEL-with-AX_PYTHON_DEVEL-to-avo.patch
     # hack fix for https://git.ligo.org/gds/gds/-/issues/185
-    - patches/0002-swig-disable-multi-module-support.patch
+    - patches/0001-swig-disable-multi-module-support.patch
     # backport https://git.ligo.org/gds/gds/-/merge_requests/298
-    - patches/0003-swig-update-numpy.i.patch
+    - patches/0002-swig-update-numpy.i.patch
 
 build:
   number: 0
