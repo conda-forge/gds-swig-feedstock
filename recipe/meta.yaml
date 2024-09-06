@@ -40,7 +40,7 @@ source:
     - patches/0003-swig-update-numpy.i.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
 
 outputs:
