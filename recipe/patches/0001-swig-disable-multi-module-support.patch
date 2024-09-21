@@ -1,0 +1,25 @@
+From c6414cb973b48c1cf7d3debf2f17a62366b3fdb3 Mon Sep 17 00:00:00 2001
+From: Duncan Macleod <macleoddm@cardiff.ac.uk>
+Date: Mon, 2 Sep 2024 17:20:05 +0100
+Subject: [PATCH 1/2] swig: disable multi-module support
+
+the noruntime option has been removed
+---
+ wrappers/swig/configure.ac | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/wrappers/swig/configure.ac b/wrappers/swig/configure.ac
+index 67dc27953..53a3eb351 100644
+--- a/wrappers/swig/configure.ac
++++ b/wrappers/swig/configure.ac
+@@ -46,7 +46,6 @@ AS_CASE("x${build_python}",
+     AX_PYTHON_DEVEL
+     AC_PROG_SWIG([3.0.1])
+     SWIG_ENABLE_CXX
+-    SWIG_MULTI_MODULE_SUPPORT
+     SWIG_PYTHON
+     ],
+   [] )
+-- 
+2.39.2
+

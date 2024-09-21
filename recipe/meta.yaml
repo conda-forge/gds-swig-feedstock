@@ -1,9 +1,9 @@
 {% set name = "gds-swig" %}
-{% set version = "3.0.0" %}
+{% set version = "3.0.1" %}
 
 # dependencies
-{% set gds_base_version = "3.0.0" %}
-{% set gds_frameio_version = "3.0.0" %}
+{% set gds_base_version = "3.0.1" %}
+{% set gds_frameio_version = "3.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://software.igwn.org/sources/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 649cbbd4320ac58d8ccba903b8ff01f7ed5b01cf075d9acabc4ab27528ba2473
+  sha256: 9a5c3195d0ec94a2d1773723aab54305c26d12e585410d2eefa16d1736cc8098
   patches:
     # to update the patches for a new release:
     #
@@ -32,15 +32,13 @@ source:
     #     git add recipe/patches/*.patch
     #     <update-this-file-as-required>
 
-    # backport 96c2a6050f1eec31b6d4c7cb55c4d717abc22c9b
-    - patches/0001-Replaced-AC_PYTHON_DEVEL-with-AX_PYTHON_DEVEL-to-avo.patch
     # hack fix for https://git.ligo.org/gds/gds/-/issues/185
-    - patches/0002-swig-disable-multi-module-support.patch
+    - patches/0001-swig-disable-multi-module-support.patch
     # backport https://git.ligo.org/gds/gds/-/merge_requests/298
-    - patches/0003-swig-update-numpy.i.patch
+    - patches/0002-swig-update-numpy.i.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
 
 outputs:
